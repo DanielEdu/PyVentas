@@ -4,23 +4,24 @@ clients = 'Daniel,Pablo,Juan'
 
 def welcome():
     print('''
- __      _____ _    ___ ___  __  __ ___ _   
+ __      _____ _    ___ ___  __  __ ___ _
  \ \    / / __| |  / __/ _ \|  \/  | __| |
   \ \/\/ /| _|| |_| (_| (_) | |\/| | _||_|
    \_/\_/ |___|____\___\___/|_|  |_|___(_)
-     
-   ''') 
+
+   ''')
     print('*'*50)
     print('What would you like to day?')
     print('[C]reate client')
     print('[D]elete client')
     print('[U]pdate client')
     print('[L]ist   clients')
+    print('[S]earch client')
 
 
 def create_client(client):
     global clients
-    
+
     if client not in clients:
         _add_coma()
         clients += client
@@ -43,6 +44,19 @@ def update_client(old_client,new_client):
     else:
         print('Client does not exists')
 
+
+def search_client(client):
+    global clients
+    clients_list = clients.split(',')
+
+    for i in clients_list:
+        if i != client:
+            continue
+        else:
+            return True
+
+
+
 def _add_coma():
     global clients
     clients += ','
@@ -55,12 +69,14 @@ def list_clients():
     global clients
     print (clients)
 
+#############################
+######     MAIN       #######
 
 if __name__=='__main__':
     welcome()
     command =input()
     command = command.upper()
-    
+
     if command == 'C':
         create_client(_get_client())
 
@@ -75,6 +91,12 @@ if __name__=='__main__':
     elif command == 'L':
         list_clients()
 
+    elif command == 'S':
+        client = _get_client()
+        if search_client(client):
+            print(f'The client is in the client\'s list')
+        else:
+            print(f'The client is not in the client\'s list')
     else:
         print('Invalid commad')
 
@@ -83,4 +105,10 @@ if __name__=='__main__':
 
 
 
- #####   
+
+
+
+
+
+
+ #####  By Pogui.
